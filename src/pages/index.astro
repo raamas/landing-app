@@ -20,7 +20,7 @@ let submitEmail = async () => {
   const {err} = await supabase.from("registered_users").insert(newUser);
 };
 
-let handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('dogshit')
     const target = e.target as HTMLFormElement;
