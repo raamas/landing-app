@@ -1,10 +1,12 @@
 ---
-import { AstroFont } from "astro-font";
-import { supabase } from "../lib/supabase";
-import "./../tailus.css";
 const APIURL = "https://diplomatic-cat-f1915b4e91.strapiapp.com/api/landing";
+import { supabase } from "../lib/supabase";
+import { AstroFont } from "astro-font";
+import type { FormEvent } from "react";
 const response = await fetch(APIURL);
 const data = await response.json();
+import "./../tailus.css";
+
 
 let email = "";
 const content = { ...data?.data };
@@ -18,7 +20,7 @@ let submitEmail = async () => {
   const {err} = await supabase.from("registered_users").insert(newUser);
 };
 
-let handleSubmit = async (e: submitEvent) => {
+let handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
