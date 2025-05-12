@@ -1,6 +1,7 @@
 ---
 const APIURL = "https://diplomatic-cat-f1915b4e91.strapiapp.com/api/landing";
 import { supabase } from "../lib/supabase";
+import Form from "../components/Form"
 import { AstroFont } from "astro-font";
 import type { FormEvent } from "react";
 const response = await fetch(APIURL);
@@ -20,28 +21,6 @@ let submitEmail = async () => {
   const {err} = await supabase.from("registered_users").insert(newUser);
 };
 
-const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('dogshit')
-    const target = e.target as HTMLFormElement;
-    const formData = new FormData(target);
-    const email = formData.get("email");
-
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email })
-    });
-
-    if (res.ok) {
-      alert("You're registered!");
-    } else {
-      const errorData = await res.json();
-      alert("Error: " + errorData.error);
-    }
-  }
 ---
 
 <html lang="en">
@@ -96,24 +75,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         class="mx-auto rounded-lg shadow-md"
       /-->
 
-      <form
-  class="mt-4 flex flex-col sm:flex-row items-center gap-4 w-full"
-  onSubmit={handleSubmit}
->
-  <input
-    type="email"
-    name="email"
-    placeholder="Enter your email"
-    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    required
-  />
-  <button
-    type="submit"
-    class="w-full text-nowrap sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-  >
-    Notify Me
-  </button>
-</form>
+      <Form />
 
     </main>
   </body>
