@@ -22,6 +22,7 @@ let submitEmail = async () => {
 
 let handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log('dogshit')
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
     const email = formData.get("email");
