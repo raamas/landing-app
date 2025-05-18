@@ -14,13 +14,37 @@ const content = { ...data?.data };
 let lines = content?.Subheading.split("\n");
 console.log(content);
 
-let submitEmail = async () => {
+let submitEmail = async (e) => {
+  console.log("123")
+
   let newUser = {
     userEmail: email
   };
   const {err} = await supabase.from("registered_users").insert(newUser);
 };
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    console.log('dogshit')
+    e.preventDefault();
+    
+    const target = e.target as HTMLFormElement;
+    const formData = new FormData(target);
+    const email = formData.get("email");
 
+    const res = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email })
+    });
+
+    if (res.ok) {
+      alert("You're registered!");
+    } else {
+      const errorData = await res.json();
+      alert("Error: " + errorData.error);
+    }
+}
 ---
 
 <html lang="en">
@@ -75,7 +99,7 @@ let submitEmail = async () => {
         class="mx-auto rounded-lg shadow-md"
       /-->
 
-      <Form />
+      <Form handler={submitEmail} />
 
     </main>
   </body>
