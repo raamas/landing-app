@@ -27,6 +27,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     <form
   class="mt-4 flex flex-col sm:flex-row items-center gap-4 w-full"
   onSubmit={handleSubmit}
+  method="POST"
 >
   <input
     type="email"
