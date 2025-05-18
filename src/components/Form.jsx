@@ -1,32 +1,8 @@
-export const Form (){
-const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    console.log('dogshit')
-    e.preventDefault();
-    
-    const target = e.target as HTMLFormElement;
-    const formData = new FormData(target);
-    const email = formData.get("email");
-
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email })
-    });
-
-    if (res.ok) {
-      alert("You're registered!");
-    } else {
-      const errorData = await res.json();
-      alert("Error: " + errorData.error);
-    }
-}
-  
+export const Form ({handler}){
   return(
     <form
   class="mt-4 flex flex-col sm:flex-row items-center gap-4 w-full"
-  onSubmit={(e)=>handleSubmit(e)}
+  onSubmit={(e)=>handler(e)}
   method="POST"
 >
   <input
