@@ -1,4 +1,14 @@
 ---
+if (Astro.request.method === "POST") {
+  try {
+    console.log("jiggyty jig")
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+
 const APIURL = "https://diplomatic-cat-f1915b4e91.strapiapp.com/api/landing";
 import { supabase } from "../lib/supabase";
 import Form from "../components/Form"
