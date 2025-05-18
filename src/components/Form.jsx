@@ -1,7 +1,8 @@
 export const Form (){
 const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     console.log('dogshit')
+    e.preventDefault();
+    
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
     const email = formData.get("email");
